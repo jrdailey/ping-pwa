@@ -1,0 +1,5 @@
+# Ignore files not needed in the container
+.git
+log/*
+tmp/*
+db/*.sqlite3
