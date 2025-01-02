@@ -1,13 +1,41 @@
 import pluginVue from 'eslint-plugin-vue'
+import typescriptEslint from '@typescript-eslint/eslint-plugin'
+import tsEslintParser from '@typescript-eslint/parser'
+import vueParser from 'vue-eslint-parser'
+
 export default [
-  // add more generic rulesets here, such as:
-  // js.configs.recommended,
   ...pluginVue.configs['flat/recommended'],
-  // ...pluginVue.configs['flat/vue2-recommended'], // Use this if you are using Vue.js 2.x.
+  // Use TypeScript parser for .ts/.tsx files
   {
+    files: ['**/*.{ts,tsx}'],
+    languageOptions: {
+      parser: tsEslintParser,  
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+    },
+    plugins: {
+      '@typescript-eslint': typescriptEslint,
+    },
     rules: {
-      // override/add rules settings here, such as:
-      // 'vue/no-unused-vars': 'error'
+      ...typescriptEslint.configs.recommended.rules,
     }
-  }
+  },
+  // Use Vue parser for vue files
+  {
+    files: ['**/*.vue'],
+    languageOptions: {
+      parser: vueParser,  
+      parserOptions: {
+        parser: tsEslintParser,  // Parse TypeScript inside .vue files
+      },
+    },
+  },
+  // Custom rules that should apply to all files
+  {
+    files: ['**/*.{js,ts,jsx,tsx,vue}'],
+    rules: {
+      "semi": ["error", "never"],  // Disable semicolons
+      "indent": ["error", 2],      // Enforce 2-space indentation
+    },
+  },
 ]
