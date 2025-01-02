@@ -10,7 +10,7 @@ import HelloWorld from './components/HelloWorld.vue'
     >
       <img
         src="/vite.svg"
-        class="logo"
+        class="logo inline"
         alt="Vite logo"
       >
     </a>
@@ -20,7 +20,7 @@ import HelloWorld from './components/HelloWorld.vue'
     >
       <img
         src="./assets/vue.svg"
-        class="logo vue"
+        class="logo vue inline"
         alt="Vue logo"
       >
     </a>
