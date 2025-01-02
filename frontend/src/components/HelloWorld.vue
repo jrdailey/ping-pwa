@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
+import SimpleCounter from './SimpleCounter.vue'
 
 defineProps({
   msg: {
@@ -17,6 +18,8 @@ const count = ref(0)
   <h2 class="text-3xl font-bold underline">
     Tailwind test
   </h2>
+
+  <SimpleCounter />
 
   <div class="card">
     <button
