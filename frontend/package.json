@@ -32,5 +32,8 @@
     "vitest": "^2.1.8",
     "vue-eslint-parser": "^9.4.3",
     "vue-tsc": "^2.2.0"
+  },
+  "resolutions": {
+    "rollup": "npm:@rollup/wasm-node"
   }
 }
