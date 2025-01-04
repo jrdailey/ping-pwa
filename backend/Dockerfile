@@ -17,6 +17,9 @@ COPY Gemfile Gemfile.lock ./
 # Install gems
 RUN bundle install
 
+# Run migrations
+RUN bundle exec rails db:prepare
+
 # Copy the rest of the application
 COPY . .
 

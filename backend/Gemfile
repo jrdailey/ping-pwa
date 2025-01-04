@@ -9,6 +9,7 @@ gem 'base64'
 gem 'bigdecimal'
 gem 'logger'
 gem 'mutex_m'
+gem 'irb'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.7', '>= 6.1.7.10'

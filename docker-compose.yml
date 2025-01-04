@@ -8,7 +8,7 @@ services:
       - "3000:3000"
     environment:
       - RAILS_ENV=development
-      - DATABASE_URL=postgresql://user:password@db/development
+      - DATABASE_URL=postgresql://user:password@db/app_development
     depends_on:
       - db
 
@@ -17,7 +17,7 @@ services:
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: development
+      POSTGRES_DB: app_development
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
