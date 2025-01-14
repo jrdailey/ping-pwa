@@ -26,6 +26,10 @@ module Backend
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
+    config.autoload_paths << Rails.root.join('app/serializers')
+
+    config.active_support.to_time_preserves_timezone = :zone
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
@@ -38,5 +42,8 @@ module Backend
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    # TODO: put origins in env vars
+    config.action_cable.allowed_request_origins = ['http://localhost:5173', 'http://192.168.1.153:5173']
   end
 end

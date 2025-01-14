@@ -16,3 +16,14 @@
 #       methods: [:get, :post, :put, :patch, :delete, :options, :head]
 #   end
 # end
+
+Rails.application.config.middleware.insert_before 0, Rack::Cors do
+  allow do
+    # TODO: Put origins in env vars
+    origins ['http://localhost:5173', 'http://192.168.1.153:5173']
+    resource '/api/*',
+             headers: :any,
+             methods: %i[get post put delete options],
+             credentials: true
+  end
+end

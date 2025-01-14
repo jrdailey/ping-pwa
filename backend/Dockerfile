@@ -17,14 +17,17 @@ COPY Gemfile Gemfile.lock ./
 # Install gems
 RUN bundle install
 
-# Run migrations
-RUN bundle exec rails db:prepare
+# Copy the entrypoint script and make it executable
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 # Copy the rest of the application
 COPY . .
 
 # Expose port
 EXPOSE 3000
+
+ENTRYPOINT ["/entrypoint.sh"]
 
 # Default command
 CMD ["rails", "server", "-b", "0.0.0.0"]

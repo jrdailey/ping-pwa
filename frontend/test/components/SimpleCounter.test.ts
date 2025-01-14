@@ -1,6 +1,6 @@
-import { mount } from '@vue/test-utils'
-import { describe, it, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import SimpleCounter from '../../src/components/SimpleCounter.vue'
+import { mount } from '@vue/test-utils'
 
 describe('SimpleCounter.vue', () => {
   it('renders the initial count', () => {

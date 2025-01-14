@@ -3,7 +3,9 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
+  mount ActionCable.server => '/cable'
+
   namespace :api do
-    post 'ping', to: 'ping#index'
+    resources :ping, only: %i[create index]
   end
 end

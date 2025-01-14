@@ -1,6 +1,6 @@
 import pluginVue from 'eslint-plugin-vue'
-import typescriptEslint from '@typescript-eslint/eslint-plugin'
 import tsEslintParser from '@typescript-eslint/parser'
+import typescriptEslint from '@typescript-eslint/eslint-plugin'
 import vueParser from 'vue-eslint-parser'
 
 export default [
@@ -9,7 +9,7 @@ export default [
   {
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
-      parser: tsEslintParser,  
+      parser: tsEslintParser,
       ecmaVersion: 'latest',
       sourceType: 'module',
     },
@@ -24,7 +24,7 @@ export default [
   {
     files: ['**/*.vue'],
     languageOptions: {
-      parser: vueParser,  
+      parser: vueParser,
       parserOptions: {
         parser: tsEslintParser,  // Parse TypeScript inside .vue files
       },
@@ -34,8 +34,10 @@ export default [
   {
     files: ['**/*.{js,ts,jsx,tsx,vue}'],
     rules: {
-      "semi": ["error", "never"],  // Disable semicolons
-      "indent": ["error", 2],      // Enforce 2-space indentation
+      'indent': ['error', 2, { 'MemberExpression': 0 }], // Enforce 2-space indentation
+      'quotes': ['error', 'single'],
+      'semi': ['error', 'never'],  // Disable semicolons
+      'sort-imports': ['error'],
     },
   },
 ]
