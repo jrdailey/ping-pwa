@@ -11,7 +11,7 @@ RSpec.describe 'Api::PingController' do
       { REMOTE_ADDR: ip_address }
     end
 
-    it 'creates a new Ping record with the correct IP address and broadcasts' do
+    it 'creates a new Ping record with the correct IP address' do
       expect { create }.to change { Ping.where(ip_address:).count }.by(+1)
     end
 
