@@ -17,7 +17,7 @@ RSpec.describe 'Api::PingController' do
 
     it 'broadcasts the correct count to the PingChannel' do
       expect(ActionCable.server).to receive(:broadcast)
-        .with(PingChannel::STREAM_NAME, { count: 1 })
+        .with(PingChannel::STREAM_NAME, { count: 1, ip_address: })
 
       create
     end
@@ -26,7 +26,7 @@ RSpec.describe 'Api::PingController' do
       create
 
       expect(response).to have_http_status(:ok)
-      expect(response.parsed_body).to eq({ 'count' => 1 })
+      expect(response.parsed_body).to eq({ count: 1, ip_address: }.as_json)
     end
   end
 
@@ -41,7 +41,7 @@ RSpec.describe 'Api::PingController' do
       get '/api/ping'
 
       expect(response).to have_http_status(:ok)
-      expect(response.parsed_body).to eq({ 'count' => 3 })
+      expect(response.parsed_body).to eq({ count: 3 }.as_json)
     end
   end
 end

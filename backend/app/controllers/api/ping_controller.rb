@@ -3,7 +3,7 @@
 module Api
   class PingController < ApplicationController
     def index
-      render json: Ping.new, status: :ok
+      render json: PingSerializer.one(Ping.new)
     end
 
     def create
@@ -12,16 +12,11 @@ module Api
       sleep 1 unless Rails.env.test?
 
       ping = Ping.create!(ip_address: request.remote_ip)
+      ping_json = PingSerializer.one(ping)
 
-      broadcast_ping(ping)
+      ActionCable.server.broadcast(PingChannel::STREAM_NAME, ping_json)
 
-      render json: ping, status: :ok
-    end
-
-    private
-
-    def broadcast_ping(ping)
-      ActionCable.server.broadcast(PingChannel::STREAM_NAME, PingSerializer.new(ping).as_json)
+      render json: ping_json
     end
   end
 end
